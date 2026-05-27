@@ -15,14 +15,30 @@
 
   <!-- ============ HERO ============ -->
   <header class="hero">
+    <div class="hero-intro animate-in" style="--delay: 0s">
+      <div class="intro-scan-sweep" aria-hidden="true"></div>
+      <div class="intro-grid" aria-hidden="true"></div>
+      <div class="intro-orb-wrap" aria-hidden="true">
+        <span class="intro-orb"></span>
+        <span class="intro-orb-ring"></span>
+        <span class="intro-orb-ring intro-orb-ring--outer"></span>
+      </div>
+      <span class="intro-badge">ScanFold</span>
+      <p class="intro-eyebrow">Next-Gen Document Intelligence</p>
+      <a href="#main-content" class="scroll-hint" aria-label="본문으로 스크롤">
+        <span class="scroll-hint-label">Scroll</span>
+        <span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+    </div>
+
     <div class="hero-inner container">
-      <div class="hero-meta">
+      <div class="hero-meta animate-in" style="--delay: 0.1s">
         <span class="hero-pill">AI-OCR · VLM Pipeline</span>
         <span class="hero-status"><span class="status-dot"></span>Production Ready</span>
       </div>
-      <h1>ScanFold : AI-OCR Logistics Automation</h1>
-      <p class="tagline">물류 전표, 영수증, 자산 관리 문서를 1초 만에 자동 스캔하고 Key-Value 데이터를 정밀 추출하는 멀티모달 플레이그라운드</p>
-      <div class="hero-stats">
+      <h1 class="animate-in" style="--delay: 0.2s">ScanFold : AI-OCR Logistics Automation</h1>
+      <p class="tagline animate-in" style="--delay: 0.4s">물류 전표, 영수증, 자산 관리 문서를 1초 만에 자동 스캔하고 Key-Value 데이터를 정밀 추출하는 멀티모달 플레이그라운드</p>
+      <div class="hero-stats animate-in" style="--delay: 0.5s">
         <div class="stat-chip"><strong>&lt;1s</strong><span>Scan Latency</span></div>
         <div class="stat-chip"><strong>KV</strong><span>JSON Extract</span></div>
         <div class="stat-chip"><strong>VLM</strong><span>Multi-Model</span></div>
@@ -30,10 +46,10 @@
     </div>
   </header>
 
-  <main class="container dashboard">
+  <main id="main-content" class="container dashboard">
 
     <!-- ============ ScanFold 실시간 플레이그라운드 데모 ============ -->
-    <section class="panel demo-card">
+    <section class="panel demo-card animate-in" style="--delay: 0.6s">
       <div class="playground">
         <div class="playground-header">
           <div class="playground-title">
@@ -49,13 +65,14 @@
         <div class="playground-columns">
           <!-- Input Side -->
           <div class="playground-col input-col">
-            <div class="demo-widget upload-widget">
+            <div class="demo-widget upload-widget" id="uploadWidget">
               <div class="widget-head">
                 <span class="widget-icon" aria-hidden="true">IN</span>
                 <h3>전표/영수증 업로드</h3>
-                <span class="widget-status">Ready</span>
+                <span class="widget-status" id="uploadStatus">Ready</span>
               </div>
               <div class="receipt-preview" role="img" aria-label="SK물류 센터 입고 전표 미리보기">
+                <span class="laser-scan" aria-hidden="true"></span>
                 <div class="receipt-paper">
                   <div class="receipt-logo">SK물류</div>
                   <div class="receipt-title">센터 입고 전표</div>
@@ -95,9 +112,10 @@
                 </div>
                 <div class="code-editor-body">
                   <span class="line-num">1</span>
-                  <textarea class="prompt-textarea" readonly rows="3">품목명, 수량, 입고처를 JSON 데이터로 추출해줘</textarea>
+                  <textarea class="prompt-textarea" id="promptInput" rows="3">품목명, 수량, 입고처를 JSON 데이터로 추출해줘</textarea>
                 </div>
               </div>
+              <button type="button" class="btn-scan" id="runScanBtn"><span class="btn-scan-bolt" aria-hidden="true">⚡</span> Run AI Scan</button>
             </div>
           </div>
 
@@ -107,9 +125,9 @@
               <div class="widget-head">
                 <span class="widget-icon" aria-hidden="true">OUT</span>
                 <h3>AI 추출 결과 (JSON)</h3>
-                <span class="widget-status success">Extracted</span>
+                <span class="widget-status success" id="jsonStatus">Extracted</span>
               </div>
-              <pre class="json-output" aria-label="VLM 추출 JSON 결과"><code><span class="json-punct">{</span>
+              <pre class="json-output" id="jsonOutput" aria-label="VLM 추출 JSON 결과"><code id="jsonCode"><span class="json-punct">{</span>
   <span class="json-key">"items"</span><span class="json-punct">: [</span>
     <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"A박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">10</span> <span class="json-punct">},</span>
     <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"B박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">20</span> <span class="json-punct">}</span>
@@ -124,9 +142,9 @@
                 <h3>성능 및 즉시 재현 코드</h3>
               </div>
               <div class="perf-chips">
-                <div class="perf-chip"><span class="perf-label">총 레이턴시</span><strong>0.5s</strong></div>
-                <div class="perf-chip"><span class="perf-label">입력 토큰</span><strong>250</strong></div>
-                <div class="perf-chip"><span class="perf-label">출력 토큰</span><strong>120</strong></div>
+                <div class="perf-chip"><span class="perf-label">총 레이턴시</span><strong id="perfLatency">0.5s</strong></div>
+                <div class="perf-chip"><span class="perf-label">입력 토큰</span><strong id="perfInputTokens">250</strong></div>
+                <div class="perf-chip"><span class="perf-label">출력 토큰</span><strong id="perfOutputTokens">120</strong></div>
               </div>
               <div class="code-editor python-editor">
                 <div class="code-editor-bar">
@@ -272,5 +290,124 @@ result = client.chat.completions.create(
       </p>
     </div>
   </footer>
+
+  <template id="jsonResultTemplate"><span class="json-punct">{</span>
+  <span class="json-key">"items"</span><span class="json-punct">: [</span>
+    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"A박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">10</span> <span class="json-punct">},</span>
+    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"B박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">20</span> <span class="json-punct">}</span>
+  <span class="json-punct">],</span>
+  <span class="json-key">"location"</span><span class="json-punct">:</span> <span class="json-str">"인천Hub"</span>
+<span class="json-punct">}</span></template>
+
+  <script>
+  (function () {
+    var runBtn = document.getElementById('runScanBtn');
+    var jsonCode = document.getElementById('jsonCode');
+    var jsonOutput = document.getElementById('jsonOutput');
+    var jsonStatus = document.getElementById('jsonStatus');
+    var uploadWidget = document.getElementById('uploadWidget');
+    var uploadStatus = document.getElementById('uploadStatus');
+    var perfLatency = document.getElementById('perfLatency');
+    var perfInputTokens = document.getElementById('perfInputTokens');
+    var perfOutputTokens = document.getElementById('perfOutputTokens');
+    var jsonTemplate = document.getElementById('jsonResultTemplate');
+
+    if (!runBtn || !jsonCode) return;
+
+    var JSON_PLAIN = [
+      '{',
+      '  "items": [',
+      '    { "name": "A박스", "qty": 10 },',
+      '    { "name": "B박스", "qty": 20 }',
+      '  ],',
+      '  "location": "인천Hub"',
+      '}'
+    ].join('\n');
+
+    var LOADING_MSG = '⏳ Scanning document and executing VLM Pipeline...';
+    var scanning = false;
+
+    runBtn.addEventListener('click', startScan);
+
+    function startScan() {
+      if (scanning) return;
+      scanning = true;
+      runBtn.disabled = true;
+      runBtn.classList.add('is-running');
+
+      uploadWidget.classList.add('is-scanning');
+      uploadStatus.textContent = 'Processing';
+      uploadStatus.classList.remove('success');
+
+      jsonStatus.textContent = 'Scanning';
+      jsonStatus.classList.remove('success');
+
+      jsonOutput.classList.add('is-loading');
+      jsonCode.textContent = LOADING_MSG;
+
+      resetCounters();
+      animateCounters();
+
+      window.setTimeout(function () {
+        typeJson(0);
+      }, 1000);
+    }
+
+    function resetCounters() {
+      perfLatency.textContent = '0.0s';
+      perfInputTokens.textContent = '0';
+      perfOutputTokens.textContent = '0';
+    }
+
+    function animateCounters() {
+      var duration = 900;
+      var start = performance.now();
+      var targets = { latency: 0.5, input: 250, output: 120 };
+
+      function tick(now) {
+        var t = Math.min((now - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - t, 3);
+
+        perfLatency.textContent = (targets.latency * ease).toFixed(1) + 's';
+        perfInputTokens.textContent = String(Math.round(targets.input * ease));
+        perfOutputTokens.textContent = String(Math.round(targets.output * ease));
+
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          perfLatency.textContent = '0.5s';
+          perfInputTokens.textContent = '250';
+          perfOutputTokens.textContent = '120';
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    function typeJson(index) {
+      if (index < JSON_PLAIN.length) {
+        jsonCode.textContent = JSON_PLAIN.slice(0, index + 1);
+        window.setTimeout(function () {
+          typeJson(index + 1);
+        }, 12);
+        return;
+      }
+
+      jsonOutput.classList.remove('is-loading');
+      jsonCode.innerHTML = jsonTemplate.innerHTML;
+
+      jsonStatus.textContent = 'Extracted';
+      jsonStatus.classList.add('success');
+
+      uploadWidget.classList.remove('is-scanning');
+      uploadStatus.textContent = 'Ready';
+      uploadStatus.classList.add('success');
+
+      scanning = false;
+      runBtn.disabled = false;
+      runBtn.classList.remove('is-running');
+    }
+  })();
+  </script>
 </body>
 </html>
