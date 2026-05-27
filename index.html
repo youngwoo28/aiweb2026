@@ -32,14 +32,130 @@
 
   <main class="container dashboard">
 
-    <!-- ============ 데모 카드 ============ -->
+    <!-- ============ ScanFold 실시간 플레이그라운드 데모 ============ -->
     <section class="panel demo-card">
-      <!-- ⬇⬇⬇ screenshot.png 를 본인 프로젝트 화면 캡쳐로 교체 ⬇⬇⬇ -->
-      <div class="screenshot-wrap">
-        <img class="screenshot" src="screenshot.png" alt="ScanFold AI-OCR 데모 화면" />
-        <div class="screenshot-glow" aria-hidden="true"></div>
+      <div class="playground">
+        <div class="playground-header">
+          <div class="playground-title">
+            <span class="playground-badge">LIVE</span>
+            <h2>ScanFold 실시간 플레이그라운드 데모</h2>
+          </div>
+          <div class="playground-model">
+            <span class="model-dot" aria-hidden="true"></span>
+            <span>Qwen3-VL-30B · InferenceClient</span>
+          </div>
+        </div>
+
+        <div class="playground-columns">
+          <!-- Input Side -->
+          <div class="playground-col input-col">
+            <div class="demo-widget upload-widget">
+              <div class="widget-head">
+                <span class="widget-icon">📄</span>
+                <h3>전표/영수증 업로드</h3>
+                <span class="widget-status">Ready</span>
+              </div>
+              <div class="receipt-preview" role="img" aria-label="SK물류 센터 입고 전표 미리보기">
+                <div class="receipt-paper">
+                  <div class="receipt-logo">SK물류</div>
+                  <div class="receipt-title">센터 입고 전표</div>
+                  <div class="receipt-meta">
+                    <span>전표 No. WH-2026-0847</span>
+                    <span>2026.05.27</span>
+                  </div>
+                  <table class="receipt-table">
+                    <thead>
+                      <tr><th>품목</th><th>수량</th><th>단위</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>A박스</td><td>10</td><td>EA</td></tr>
+                      <tr><td>B박스</td><td>20</td><td>EA</td></tr>
+                      <tr><td>C파레트</td><td>5</td><td>PLT</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="receipt-footer">입고처: 인천Hub · 담당: 김물류</div>
+                </div>
+              </div>
+              <p class="upload-filename">
+                <span class="file-icon" aria-hidden="true">📎</span>
+                업로드된 파일: <strong>전표1.png</strong>
+              </p>
+            </div>
+
+            <div class="demo-widget prompt-widget">
+              <div class="widget-head">
+                <span class="widget-icon">💡</span>
+                <h3>추출 프롬프트 입력</h3>
+              </div>
+              <div class="code-editor" aria-label="프롬프트 입력 코드 에디터">
+                <div class="code-editor-bar">
+                  <span class="editor-dot red"></span>
+                  <span class="editor-dot yellow"></span>
+                  <span class="editor-dot green"></span>
+                  <span class="editor-tab">prompt.txt</span>
+                </div>
+                <div class="code-editor-body">
+                  <span class="line-num">1</span>
+                  <textarea class="prompt-textarea" readonly rows="3">품목명, 수량, 입고처를 JSON 데이터로 추출해줘</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output Side -->
+          <div class="playground-col output-col">
+            <div class="demo-widget json-widget">
+              <div class="widget-head">
+                <span class="widget-icon">📊</span>
+                <h3>AI 추출 결과 (JSON)</h3>
+                <span class="widget-status success">Extracted</span>
+              </div>
+              <pre class="json-output" aria-label="VLM 추출 JSON 결과"><code><span class="json-punct">{</span>
+  <span class="json-key">"items"</span><span class="json-punct">: [</span>
+    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"A박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">10</span> <span class="json-punct">},</span>
+    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"B박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">20</span> <span class="json-punct">}</span>
+  <span class="json-punct">],</span>
+  <span class="json-key">"location"</span><span class="json-punct">:</span> <span class="json-str">"인천Hub"</span>
+<span class="json-punct">}</span></code></pre>
+            </div>
+
+            <div class="demo-widget perf-widget">
+              <div class="widget-head">
+                <span class="widget-icon">⏱️</span>
+                <h3>성능 및 즉시 재현 코드</h3>
+              </div>
+              <div class="perf-chips">
+                <div class="perf-chip"><span class="perf-label">총 레이턴시</span><strong>0.5s</strong></div>
+                <div class="perf-chip"><span class="perf-label">입력 토큰</span><strong>250</strong></div>
+                <div class="perf-chip"><span class="perf-label">출력 토큰</span><strong>120</strong></div>
+              </div>
+              <div class="code-editor python-editor">
+                <div class="code-editor-bar">
+                  <span class="editor-dot red"></span>
+                  <span class="editor-dot yellow"></span>
+                  <span class="editor-dot green"></span>
+                  <span class="editor-tab">reproduce.py</span>
+                  <button type="button" class="copy-btn" disabled aria-label="코드 복사">Copy</button>
+                </div>
+                <pre class="python-snippet"><code><span class="py-kw">from</span> huggingface_hub <span class="py-kw">import</span> InferenceClient
+
+client = InferenceClient()
+result = client.chat.completions.create(
+    model=<span class="py-str">"Qwen/Qwen3-VL-30B"</span>,
+    messages=[{
+        <span class="py-str">"role"</span>: <span class="py-str">"user"</span>,
+        <span class="py-str">"content"</span>: [
+            {<span class="py-str">"type"</span>: <span class="py-str">"image"</span>, <span class="py-str">"url"</span>: <span class="py-str">"전표1.png"</span>},
+            {<span class="py-str">"type"</span>: <span class="py-str">"text"</span>, <span class="py-str">"text"</span>: prompt}
+        ]
+    }]
+)
+<span class="py-fn">print</span>(result.choices[<span class="py-num">0</span>].message.content)</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- ⬆⬆⬆ screenshot.png 를 본인 프로젝트 화면 캡쳐로 교체 ⬆⬆⬆ -->
 
       <div class="cta">
         <!-- ⬇⬇⬇ 다음 주(10주차) 데모 띄운 후 href="#" 를 진짜 도메인으로 ⬇⬇⬇ -->
