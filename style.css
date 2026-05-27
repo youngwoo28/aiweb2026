@@ -249,12 +249,17 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
+  min-width: 2rem;
   height: 2rem;
-  border-radius: 8px;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  font-size: 1rem;
+  padding: 0 0.4rem;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-bright);
 }
 
 .section-sub {
@@ -391,7 +396,20 @@ body {
 }
 
 .widget-icon {
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.1rem;
+  height: 1.65rem;
+  padding: 0 0.35rem;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--accent-bright);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   line-height: 1;
 }
 
@@ -511,10 +529,6 @@ body {
   font-family: var(--font-mono);
   color: var(--accent-bright);
   font-weight: 600;
-}
-
-.file-icon {
-  font-size: 0.85rem;
 }
 
 /* Code editor UI */
@@ -866,11 +880,21 @@ body {
   opacity: 1;
 }
 
-.use-case-icon {
-  font-size: 2rem;
-  line-height: 1;
+.use-case-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
   margin-bottom: 1rem;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent-bright);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .use-case-card h3 {
