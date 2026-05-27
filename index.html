@@ -71,30 +71,16 @@
                 <h3>전표/영수증 업로드</h3>
                 <span class="widget-status" id="uploadStatus">Ready</span>
               </div>
-              <div class="receipt-preview" role="img" aria-label="SK물류 센터 입고 전표 미리보기">
+              <div class="example-tabs" role="tablist" aria-label="데모 예시 선택">
+                <button type="button" class="example-tab is-active" role="tab" aria-selected="true" data-example="logistics" id="tabLogistics">예시 1: 물류 전표</button>
+                <button type="button" class="example-tab" role="tab" aria-selected="false" data-example="receipt" id="tabReceipt">예시 2: 회사 영수증</button>
+              </div>
+              <div class="receipt-preview" id="receiptPreview" role="img" aria-label="SK물류 센터 입고 전표 미리보기">
                 <span class="laser-scan" aria-hidden="true"></span>
-                <div class="receipt-paper">
-                  <div class="receipt-logo">SK물류</div>
-                  <div class="receipt-title">센터 입고 전표</div>
-                  <div class="receipt-meta">
-                    <span>전표 No. WH-2026-0847</span>
-                    <span>2026.05.27</span>
-                  </div>
-                  <table class="receipt-table">
-                    <thead>
-                      <tr><th>품목</th><th>수량</th><th>단위</th></tr>
-                    </thead>
-                    <tbody>
-                      <tr><td>A박스</td><td>10</td><td>EA</td></tr>
-                      <tr><td>B박스</td><td>20</td><td>EA</td></tr>
-                      <tr><td>C파레트</td><td>5</td><td>PLT</td></tr>
-                    </tbody>
-                  </table>
-                  <div class="receipt-footer">입고처: 인천Hub · 담당: 김물류</div>
-                </div>
+                <div class="receipt-paper" id="receiptPaper"></div>
               </div>
               <p class="upload-filename">
-                업로드된 파일: <strong>전표1.png</strong>
+                업로드된 파일: <strong id="uploadFilename">전표1.png</strong>
               </p>
             </div>
 
@@ -127,13 +113,7 @@
                 <h3>AI 추출 결과 (JSON)</h3>
                 <span class="widget-status success" id="jsonStatus">Extracted</span>
               </div>
-              <pre class="json-output" id="jsonOutput" aria-label="VLM 추출 JSON 결과"><code id="jsonCode"><span class="json-punct">{</span>
-  <span class="json-key">"items"</span><span class="json-punct">: [</span>
-    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"A박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">10</span> <span class="json-punct">},</span>
-    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"B박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">20</span> <span class="json-punct">}</span>
-  <span class="json-punct">],</span>
-  <span class="json-key">"location"</span><span class="json-punct">:</span> <span class="json-str">"인천Hub"</span>
-<span class="json-punct">}</span></code></pre>
+              <pre class="json-output" id="jsonOutput" aria-label="VLM 추출 JSON 결과"><code id="jsonCode"></code></pre>
             </div>
 
             <div class="demo-widget perf-widget">
@@ -154,20 +134,7 @@
                   <span class="editor-tab">reproduce.py</span>
                   <button type="button" class="copy-btn" disabled aria-label="코드 복사">Copy</button>
                 </div>
-                <pre class="python-snippet"><code><span class="py-kw">from</span> huggingface_hub <span class="py-kw">import</span> InferenceClient
-
-client = InferenceClient()
-result = client.chat.completions.create(
-    model=<span class="py-str">"Qwen/Qwen3-VL-30B"</span>,
-    messages=[{
-        <span class="py-str">"role"</span>: <span class="py-str">"user"</span>,
-        <span class="py-str">"content"</span>: [
-            {<span class="py-str">"type"</span>: <span class="py-str">"image"</span>, <span class="py-str">"url"</span>: <span class="py-str">"전표1.png"</span>},
-            {<span class="py-str">"type"</span>: <span class="py-str">"text"</span>, <span class="py-str">"text"</span>: prompt}
-        ]
-    }]
-)
-<span class="py-fn">print</span>(result.choices[<span class="py-num">0</span>].message.content)</code></pre>
+                <pre class="python-snippet"><code id="pythonCode"></code></pre>
               </div>
             </div>
           </div>
@@ -291,14 +258,6 @@ result = client.chat.completions.create(
     </div>
   </footer>
 
-  <template id="jsonResultTemplate"><span class="json-punct">{</span>
-  <span class="json-key">"items"</span><span class="json-punct">: [</span>
-    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"A박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">10</span> <span class="json-punct">},</span>
-    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"B박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">20</span> <span class="json-punct">}</span>
-  <span class="json-punct">],</span>
-  <span class="json-key">"location"</span><span class="json-punct">:</span> <span class="json-str">"인천Hub"</span>
-<span class="json-punct">}</span></template>
-
   <script>
   (function () {
     var runBtn = document.getElementById('runScanBtn');
@@ -307,33 +266,177 @@ result = client.chat.completions.create(
     var jsonStatus = document.getElementById('jsonStatus');
     var uploadWidget = document.getElementById('uploadWidget');
     var uploadStatus = document.getElementById('uploadStatus');
+    var receiptPreview = document.getElementById('receiptPreview');
+    var receiptPaper = document.getElementById('receiptPaper');
+    var uploadFilename = document.getElementById('uploadFilename');
+    var promptInput = document.getElementById('promptInput');
+    var pythonCode = document.getElementById('pythonCode');
     var perfLatency = document.getElementById('perfLatency');
     var perfInputTokens = document.getElementById('perfInputTokens');
     var perfOutputTokens = document.getElementById('perfOutputTokens');
-    var jsonTemplate = document.getElementById('jsonResultTemplate');
+    var exampleTabs = document.querySelectorAll('.example-tab');
 
     if (!runBtn || !jsonCode) return;
 
-    var JSON_PLAIN = [
-      '{',
-      '  "items": [',
-      '    { "name": "A박스", "qty": 10 },',
-      '    { "name": "B박스", "qty": 20 }',
-      '  ],',
-      '  "location": "인천Hub"',
-      '}'
-    ].join('\n');
+    var EXAMPLES = {
+      logistics: {
+        previewAria: 'SK물류 센터 입고 전표 미리보기',
+        receiptHtml:
+          '<div class="receipt-logo">SK물류</div>' +
+          '<div class="receipt-title">센터 입고 전표</div>' +
+          '<div class="receipt-meta"><span>전표 No. WH-2026-0847</span><span>2026.05.27</span></div>' +
+          '<table class="receipt-table"><thead><tr><th>품목</th><th>수량</th><th>단위</th></tr></thead>' +
+          '<tbody><tr><td>A박스</td><td>10</td><td>EA</td></tr>' +
+          '<tr><td>B박스</td><td>20</td><td>EA</td></tr>' +
+          '<tr><td>C파레트</td><td>5</td><td>PLT</td></tr></tbody></table>' +
+          '<div class="receipt-footer">입고처: 인천Hub · 담당: 김물류</div>',
+        filename: '전표1.png',
+        prompt: '품목명, 수량, 입고처를 JSON 데이터로 추출해줘',
+        jsonPlain: [
+          '{',
+          '  "items": [',
+          '    { "name": "A박스", "qty": 10 },',
+          '    { "name": "B박스", "qty": 20 },',
+          '    { "name": "C파레트", "qty": 5 }',
+          '  ],',
+          '  "location": "인천Hub"',
+          '}'
+        ].join('\n'),
+        jsonHtml:
+          '<span class="json-punct">{</span>\n' +
+          '  <span class="json-key">"items"</span><span class="json-punct">: [</span>\n' +
+          '    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"A박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">10</span> <span class="json-punct">},</span>\n' +
+          '    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"B박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">20</span> <span class="json-punct">},</span>\n' +
+          '    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"C파레트"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">5</span> <span class="json-punct">}</span>\n' +
+          '  <span class="json-punct">],</span>\n' +
+          '  <span class="json-key">"location"</span><span class="json-punct">:</span> <span class="json-str">"인천Hub"</span>\n' +
+          '<span class="json-punct">}</span>',
+        perf: { latency: 0.5, input: 250, output: 120 }
+      },
+      receipt: {
+        previewAria: 'SK식품 식대 영수증 미리보기',
+        receiptHtml:
+          '<div class="receipt-logo receipt-logo--food">SK식품</div>' +
+          '<div class="receipt-title">식대 영수증</div>' +
+          '<div class="receipt-meta"><span>가맹점: 강남역 분식집</span><span>2026.05.26</span></div>' +
+          '<table class="receipt-table receipt-table--summary">' +
+          '<tbody><tr><th>공급가액</th><td>45,455원</td></tr>' +
+          '<tr><th>부가세</th><td>4,545원</td></tr>' +
+          '<tr class="receipt-total"><th>합계</th><td>50,000원</td></tr></tbody></table>' +
+          '<div class="receipt-footer">결제: 법인카드 · 승인번호 882910</div>',
+        filename: 'receipt_01.png',
+        prompt: '영수증에서 가맹점명, 일자, 공급가액, 부가세를 추출해줘',
+        jsonPlain: [
+          '{',
+          '  "merchant": "강남역 분식집",',
+          '  "date": "2026-05-26",',
+          '  "supply_amount": 45455,',
+          '  "vat": 4545,',
+          '  "total": 50000',
+          '}'
+        ].join('\n'),
+        jsonHtml:
+          '<span class="json-punct">{</span>\n' +
+          '  <span class="json-key">"merchant"</span><span class="json-punct">:</span> <span class="json-str">"강남역 분식집"</span><span class="json-punct">,</span>\n' +
+          '  <span class="json-key">"date"</span><span class="json-punct">:</span> <span class="json-str">"2026-05-26"</span><span class="json-punct">,</span>\n' +
+          '  <span class="json-key">"supply_amount"</span><span class="json-punct">:</span> <span class="json-num">45455</span><span class="json-punct">,</span>\n' +
+          '  <span class="json-key">"vat"</span><span class="json-punct">:</span> <span class="json-num">4545</span><span class="json-punct">,</span>\n' +
+          '  <span class="json-key">"total"</span><span class="json-punct">:</span> <span class="json-num">50000</span>\n' +
+          '<span class="json-punct">}</span>',
+        perf: { latency: 0.4, input: 180, output: 90 }
+      }
+    };
 
     var LOADING_MSG = '⏳ Scanning document and executing VLM Pipeline...';
+    var currentExample = 'logistics';
     var scanning = false;
+
+    function getExample() {
+      return EXAMPLES[currentExample];
+    }
+
+    function buildPythonSnippet(filename) {
+      return (
+        '<span class="py-kw">from</span> huggingface_hub <span class="py-kw">import</span> InferenceClient\n\n' +
+        'client = InferenceClient()\n' +
+        'result = client.chat.completions.create(\n' +
+        '    model=<span class="py-str">"Qwen/Qwen3-VL-30B"</span>,\n' +
+        '    messages=[{\n' +
+        '        <span class="py-str">"role"</span>: <span class="py-str">"user"</span>,\n' +
+        '        <span class="py-str">"content"</span>: [\n' +
+        '            {<span class="py-str">"type"</span>: <span class="py-str">"image"</span>, <span class="py-str">"url"</span>: <span class="py-str">"' + filename + '"</span>},\n' +
+        '            {<span class="py-str">"type"</span>: <span class="py-str">"text"</span>, <span class="py-str">"text"</span>: prompt}\n' +
+        '        ]\n' +
+        '    }]\n' +
+        ')\n' +
+        '<span class="py-fn">print</span>(result.choices[<span class="py-num">0</span>].message.content)'
+      );
+    }
+
+    function setPerfDisplay(perf) {
+      perfLatency.textContent = perf.latency.toFixed(1) + 's';
+      perfInputTokens.textContent = String(perf.input);
+      perfOutputTokens.textContent = String(perf.output);
+    }
+
+    function updateTabs(id) {
+      exampleTabs.forEach(function (tab) {
+        var active = tab.dataset.example === id;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    }
+
+    function applyExample(id, options) {
+      options = options || {};
+      var ex = EXAMPLES[id];
+      if (!ex) return;
+
+      currentExample = id;
+      updateTabs(id);
+
+      receiptPreview.setAttribute('aria-label', ex.previewAria);
+      receiptPaper.classList.add('is-swapping');
+      window.setTimeout(function () {
+        receiptPaper.innerHTML = ex.receiptHtml;
+        receiptPaper.classList.remove('is-swapping');
+      }, 180);
+
+      uploadFilename.textContent = ex.filename;
+      if (!options.keepPrompt) {
+        promptInput.value = ex.prompt;
+      }
+      pythonCode.innerHTML = buildPythonSnippet(ex.filename);
+
+      if (!scanning) {
+        jsonCode.innerHTML = ex.jsonHtml;
+        setPerfDisplay(ex.perf);
+        jsonStatus.textContent = 'Extracted';
+        jsonStatus.classList.add('success');
+        jsonOutput.classList.remove('is-loading');
+      }
+    }
+
+    function switchExample(id) {
+      if (scanning || id === currentExample) return;
+      applyExample(id);
+    }
+
+    exampleTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        switchExample(tab.dataset.example);
+      });
+    });
 
     runBtn.addEventListener('click', startScan);
 
     function startScan() {
       if (scanning) return;
+      var ex = getExample();
       scanning = true;
       runBtn.disabled = true;
       runBtn.classList.add('is-running');
+      exampleTabs.forEach(function (t) { t.disabled = true; });
 
       uploadWidget.classList.add('is-scanning');
       uploadStatus.textContent = 'Processing';
@@ -346,10 +449,10 @@ result = client.chat.completions.create(
       jsonCode.textContent = LOADING_MSG;
 
       resetCounters();
-      animateCounters();
+      animateCounters(ex.perf);
 
       window.setTimeout(function () {
-        typeJson(0);
+        typeJson(0, ex);
       }, 1000);
     }
 
@@ -359,10 +462,9 @@ result = client.chat.completions.create(
       perfOutputTokens.textContent = '0';
     }
 
-    function animateCounters() {
+    function animateCounters(targets) {
       var duration = 900;
       var start = performance.now();
-      var targets = { latency: 0.5, input: 250, output: 120 };
 
       function tick(now) {
         var t = Math.min((now - start) / duration, 1);
@@ -375,26 +477,17 @@ result = client.chat.completions.create(
         if (t < 1) {
           requestAnimationFrame(tick);
         } else {
-          perfLatency.textContent = '0.5s';
-          perfInputTokens.textContent = '250';
-          perfOutputTokens.textContent = '120';
+          setPerfDisplay(targets);
         }
       }
 
       requestAnimationFrame(tick);
     }
 
-    function typeJson(index) {
-      if (index < JSON_PLAIN.length) {
-        jsonCode.textContent = JSON_PLAIN.slice(0, index + 1);
-        window.setTimeout(function () {
-          typeJson(index + 1);
-        }, 12);
-        return;
-      }
-
+    function finishScan(ex) {
       jsonOutput.classList.remove('is-loading');
-      jsonCode.innerHTML = jsonTemplate.innerHTML;
+      jsonCode.innerHTML = ex.jsonHtml;
+      setPerfDisplay(ex.perf);
 
       jsonStatus.textContent = 'Extracted';
       jsonStatus.classList.add('success');
@@ -406,7 +499,22 @@ result = client.chat.completions.create(
       scanning = false;
       runBtn.disabled = false;
       runBtn.classList.remove('is-running');
+      exampleTabs.forEach(function (t) { t.disabled = false; });
     }
+
+    function typeJson(index, ex) {
+      var plain = ex.jsonPlain;
+      if (index < plain.length) {
+        jsonCode.textContent = plain.slice(0, index + 1);
+        window.setTimeout(function () {
+          typeJson(index + 1, ex);
+        }, 12);
+        return;
+      }
+      finishScan(ex);
+    }
+
+    applyExample('logistics');
   })();
   </script>
 </body>

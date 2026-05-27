@@ -1298,6 +1298,79 @@ body {
   }
 }
 
+/* ============ Example Tabs ============ */
+.example-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.example-tab {
+  flex: 1;
+  padding: 0.5rem 0.65rem;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.example-tab:hover:not(:disabled):not(.is-active) {
+  color: var(--ink);
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.example-tab.is-active {
+  color: #ecfdf5;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.5), rgba(16, 185, 129, 0.35));
+  border-color: rgba(52, 211, 153, 0.55);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+}
+
+.example-tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.receipt-paper.is-swapping {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.receipt-logo--food {
+  color: #059669;
+}
+
+.receipt-table--summary th {
+  text-align: left;
+  font-weight: 600;
+  color: #475569;
+  padding: 0.35rem 0.5rem 0.35rem 0;
+  width: 38%;
+}
+
+.receipt-table--summary td {
+  text-align: right;
+  font-weight: 600;
+  color: #0f172a;
+  padding: 0.35rem 0;
+}
+
+.receipt-total th,
+.receipt-total td {
+  border-top: 2px solid #94a3b8;
+  padding-top: 0.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
 /* ============ Interactive Scan Demo ============ */
 .btn-scan {
   display: flex;
