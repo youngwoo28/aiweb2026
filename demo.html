@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRUCT//SIM v5.0 — Live Demo</title>
+  <meta name="description" content="50층 타워 구조·풍하중·사고 연쇄 3D 시뮬레이터 — 전도, 가구 충돌, 유리 파손, 창외 추락, EV 정지" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
+    #root { width: 100%; height: 100%; }
+    .demo-back {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      background: rgba(0, 8, 16, 0.82);
+      color: #00f0ff;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .demo-back:hover {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: rgba(0, 240, 255, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <a class="demo-back" href="index.html">← ScanFold 소개</a>
+  <div id="root"></div>
+  <script type="module" src="demo.bundle.js"></script>
+</body>
+</html>
