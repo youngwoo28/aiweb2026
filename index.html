@@ -3,252 +3,324 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ScanFold : AI-OCR Logistics Automation</title>
-  <meta name="description" content="물류 전표, 영수증, 자산 관리 문서를 1초 만에 자동 스캔하고 Key-Value 데이터를 정밀 추출하는 멀티모달 플레이그라운드" />
+  <title>STRUCT//SIM v5.0 — ACCIDENT CHAIN EDITION</title>
+  <meta name="description" content="초고층 빌딩의 구조적 한계를 넘어 재실자의 안전과 생명까지 시뮬레이션하는 미래형 구조-인간 통합 재난 예측 플랫폼" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
 
-  <!-- ============ HERO ============ -->
-  <header class="hero">
-    <div class="hero-intro animate-in" style="--delay: 0s">
-      <div class="intro-scan-sweep" aria-hidden="true"></div>
-      <div class="intro-grid" aria-hidden="true"></div>
-      <div class="intro-orb-wrap" aria-hidden="true">
-        <span class="intro-orb"></span>
-        <span class="intro-orb-ring"></span>
-        <span class="intro-orb-ring intro-orb-ring--outer"></span>
+  <!-- ============ NAV ============ -->
+  <nav class="top-nav container animate-in" style="--delay: 0s">
+    <a class="nav-brand" href="#">
+      <span class="nav-brand-mark">STRUCT//SIM</span>
+      <span class="nav-brand-ver">v5.0</span>
+    </a>
+    <div class="nav-links">
+      <a href="#mission">Mission</a>
+      <a href="#features">Spec</a>
+      <a href="#use-cases">Use Cases</a>
+      <a class="nav-cta" href="demo.html" data-demo-link>Floor Dive</a>
+    </div>
+  </nav>
+
+  <!-- ============ [1] HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-visual animate-in" style="--delay: 0.05s" aria-hidden="true">
+      <div class="tower-silhouette">
+        <div class="tower-core"></div>
+        <div class="tower-floor" style="--f: 1"></div>
+        <div class="tower-floor" style="--f: 2"></div>
+        <div class="tower-floor" style="--f: 3"></div>
+        <div class="tower-floor" style="--f: 4"></div>
+        <div class="tower-floor" style="--f: 5"></div>
+        <div class="tower-floor" style="--f: 6"></div>
+        <div class="tower-floor" style="--f: 7"></div>
+        <div class="tower-floor" style="--f: 8"></div>
+        <div class="tower-beacon"></div>
+        <div class="tower-scan"></div>
       </div>
-      <span class="intro-badge">ScanFold</span>
-      <p class="intro-eyebrow">Next-Gen Document Intelligence</p>
-      <a href="#main-content" class="scroll-hint" aria-label="본문으로 스크롤">
-        <span class="scroll-hint-label">Scroll</span>
-        <span class="scroll-arrow" aria-hidden="true">↓</span>
-      </a>
+      <div class="hero-radar"></div>
     </div>
 
     <div class="hero-inner container">
       <div class="hero-meta animate-in" style="--delay: 0.1s">
-        <span class="hero-pill">AI-OCR · VLM Pipeline</span>
-        <span class="hero-status"><span class="status-dot"></span>Production Ready</span>
-      </div>
-      <h1 class="animate-in" style="--delay: 0.2s">ScanFold : AI-OCR Logistics Automation</h1>
-      <p class="tagline animate-in" style="--delay: 0.4s">물류 전표, 영수증, 자산 관리 문서를 1초 만에 자동 스캔하고 Key-Value 데이터를 정밀 추출하는 멀티모달 플레이그라운드</p>
-      <div class="hero-stats animate-in" style="--delay: 0.5s">
-        <div class="stat-chip"><strong>&lt;1s</strong><span>Scan Latency</span></div>
-        <div class="stat-chip"><strong>KV</strong><span>JSON Extract</span></div>
-        <div class="stat-chip"><strong>VLM</strong><span>Multi-Model</span></div>
-      </div>
-    </div>
-  </header>
-
-  <main id="main-content" class="container dashboard">
-
-    <!-- ============ ScanFold 실시간 플레이그라운드 데모 ============ -->
-    <section class="panel demo-card animate-in" style="--delay: 0.6s">
-      <div class="playground">
-        <div class="playground-header">
-          <div class="playground-title">
-            <span class="playground-badge">LIVE</span>
-            <h2>ScanFold 실시간 플레이그라운드 데모</h2>
-          </div>
-          <div class="playground-model">
-            <span class="model-dot" aria-hidden="true"></span>
-            <span>Qwen3-VL-30B · InferenceClient</span>
-          </div>
-        </div>
-
-        <div class="playground-columns">
-          <!-- Input Side -->
-          <div class="playground-col input-col">
-            <div class="demo-widget upload-widget" id="uploadWidget">
-              <div class="widget-head">
-                <span class="widget-icon" aria-hidden="true">IN</span>
-                <h3>전표/영수증 업로드</h3>
-                <span class="widget-status" id="uploadStatus">Ready</span>
-              </div>
-              <div class="example-tabs" role="tablist" aria-label="데모 예시 선택">
-                <button type="button" class="example-tab is-active" role="tab" aria-selected="true" data-example="logistics" id="tabLogistics">예시 1: 물류 전표</button>
-                <button type="button" class="example-tab" role="tab" aria-selected="false" data-example="receipt" id="tabReceipt">예시 2: 회사 영수증</button>
-              </div>
-              <div class="receipt-preview" id="receiptPreview" role="img" aria-label="SK물류 센터 입고 전표 미리보기">
-                <span class="laser-scan" aria-hidden="true"></span>
-                <div class="receipt-paper" id="receiptPaper"></div>
-              </div>
-              <p class="upload-filename">
-                업로드된 파일: <strong id="uploadFilename">전표1.png</strong>
-              </p>
-            </div>
-
-            <div class="demo-widget prompt-widget">
-              <div class="widget-head">
-                <span class="widget-icon" aria-hidden="true">PR</span>
-                <h3>추출 프롬프트 입력</h3>
-              </div>
-              <div class="code-editor" aria-label="프롬프트 입력 코드 에디터">
-                <div class="code-editor-bar">
-                  <span class="editor-dot red"></span>
-                  <span class="editor-dot yellow"></span>
-                  <span class="editor-dot green"></span>
-                  <span class="editor-tab">prompt.txt</span>
-                </div>
-                <div class="code-editor-body">
-                  <span class="line-num">1</span>
-                  <textarea class="prompt-textarea" id="promptInput" rows="3">품목명, 수량, 입고처를 JSON 데이터로 추출해줘</textarea>
-                </div>
-              </div>
-              <button type="button" class="btn-scan" id="runScanBtn"><span class="btn-scan-bolt" aria-hidden="true">⚡</span> Run AI Scan</button>
-            </div>
-          </div>
-
-          <!-- Output Side -->
-          <div class="playground-col output-col">
-            <div class="demo-widget json-widget">
-              <div class="widget-head">
-                <span class="widget-icon" aria-hidden="true">OUT</span>
-                <h3>AI 추출 결과 (JSON)</h3>
-                <span class="widget-status success" id="jsonStatus">Extracted</span>
-              </div>
-              <pre class="json-output" id="jsonOutput" aria-label="VLM 추출 JSON 결과"><code id="jsonCode"></code></pre>
-            </div>
-
-            <div class="demo-widget perf-widget">
-              <div class="widget-head">
-                <span class="widget-icon" aria-hidden="true">RUN</span>
-                <h3>성능 및 즉시 재현 코드</h3>
-              </div>
-              <div class="perf-chips">
-                <div class="perf-chip"><span class="perf-label">총 레이턴시</span><strong id="perfLatency">0.5s</strong></div>
-                <div class="perf-chip"><span class="perf-label">입력 토큰</span><strong id="perfInputTokens">250</strong></div>
-                <div class="perf-chip"><span class="perf-label">출력 토큰</span><strong id="perfOutputTokens">120</strong></div>
-              </div>
-              <div class="code-editor python-editor">
-                <div class="code-editor-bar">
-                  <span class="editor-dot red"></span>
-                  <span class="editor-dot yellow"></span>
-                  <span class="editor-dot green"></span>
-                  <span class="editor-tab">reproduce.py</span>
-                  <button type="button" class="copy-btn" disabled aria-label="코드 복사">Copy</button>
-                </div>
-                <pre class="python-snippet"><code id="pythonCode"></code></pre>
-              </div>
-            </div>
-          </div>
-        </div>
+        <span class="pill pill-cyan">TRUE-3D · HUMAN-CENTRIC SAFETY</span>
+        <span class="pill pill-amber"><span class="pulse-dot"></span>ACCIDENT CHAIN MODE</span>
       </div>
 
-      <div class="cta">
-        <a class="btn btn-primary" href="demo.html" target="_blank" rel="noopener">
-          Live Demo <span class="badge">STRUCT//SIM v5.0</span>
+      <p class="hero-eyebrow animate-in" style="--delay: 0.15s">STRUCTURAL · HUMAN · INTEGRATED DISASTER FORECAST</p>
+
+      <h1 class="hero-title animate-in" style="--delay: 0.2s">
+        STRUCT//SIM <span class="title-accent">v5.0</span>
+        <span class="title-sub">— ACCIDENT CHAIN EDITION</span>
+      </h1>
+
+      <p class="hero-tagline animate-in" style="--delay: 0.35s">
+        초고층 빌딩의 구조적 한계를 넘어, 재실자의 안전과 생명까지 시뮬레이션하는<br class="hide-mobile" />
+        미래형 <strong>구조-인간 통합 재난 예측 플랫폼</strong>.
+      </p>
+
+      <div class="hero-metrics animate-in" style="--delay: 0.45s">
+        <div class="metric"><strong>50F</strong><span>Core + Outrigger</span></div>
+        <div class="metric"><strong>milli-g</strong><span>ISO 10137 Grade</span></div>
+        <div class="metric"><strong>RSET</strong><span>Golden Time</span></div>
+        <div class="metric"><strong>×40</strong><span>Exaggeration</span></div>
+      </div>
+
+      <div class="hero-cta animate-in" style="--delay: 0.55s">
+        <a class="btn-primary" href="demo.html" data-demo-link>
+          <span class="btn-icon" aria-hidden="true">▶</span>
+          라이브 데모 실행하기 (Floor Dive)
         </a>
-
-        <a class="btn btn-secondary" href="https://github.com/youngwoo28/aiweb2026" target="_blank" rel="noopener">
+        <a class="btn-secondary" href="https://github.com/youngwoo28/aiweb2026" target="_blank" rel="noopener">
           Source on GitHub
         </a>
       </div>
-    </section>
 
-    <!-- ============ Tech Stack ============ -->
-    <section class="panel stack-section">
-      <div class="section-head">
-        <h2><span class="section-icon" aria-hidden="true">TS</span> Tech Stack</h2>
-        <p class="section-sub">멀티모달 OCR 파이프라인을 구성하는 핵심 인프라</p>
-      </div>
-      <!-- ⬇⬇⬇ 본인 프로젝트가 실제로 쓴 기술로 교체 ⬇⬇⬇ -->
-      <ul class="stack">
-        <li>Gradio 5 (UI Framework)</li>
-        <li>Qwen/Qwen3-VL-30B, zai-org/GLM-4.5V (VLM Models)</li>
-        <li>Hugging Face Inference Client (Model Auto Routing)</li>
-        <li>Docker SDK &amp; Hugging Face Spaces (Infrastructure)</li>
-        <li>GitHub Actions (CI/CD Automated Deployment)</li>
-      </ul>
-      <!-- ⬆⬆⬆ 본인 프로젝트가 실제로 쓴 기술로 교체 ⬆⬆⬆ -->
-    </section>
+      <a href="#mission" class="scroll-hint animate-in" style="--delay: 0.7s" aria-label="본문으로 스크롤">
+        <span>Scroll</span>
+        <span class="scroll-arrow">↓</span>
+      </a>
+    </div>
+  </header>
 
-    <!-- ============ 어떻게 만들었나 ============ -->
-    <section class="panel howto">
-      <div class="section-head">
-        <h2><span class="section-icon" aria-hidden="true">AB</span> 어떻게 만들었나</h2>
-        <p class="section-sub">Vision-Language Model 기반 문서 이해 엔진</p>
-      </div>
-      <!-- ⬇⬇⬇ 본인 프로젝트 설명 3줄로 교체 ⬇⬇⬇ -->
-      <p class="howto-body">
-        사용자가 영수증, 물류 전표, 또는 일반 문서 이미지를 업로드하고 정보 추출 프롬프트를 입력하면, 최신 비전-언어 모델(VLM)들을 통해 텍스트 및 Key-Value 데이터를 정밀하게 추출하는 AI 플레이그라운드입니다. 단일 InferenceClient를 활용해 복잡한 멀티모달 모델들의 API 호출을 자동화하고, 토큰 사용량, 레이턴시, 그리고 즉시 재현 가능한 Python 코드까지 한 화면에 시각화합니다. Docker 환경으로 패키징되어 24시간 구동되는 인프라에 배포되며, GitHub Actions CI/CD 파이프라인을 구축하여 메인 브랜치 코드 수정 시 자동으로 실시간 반영되도록 구현했습니다.
-      </p>
-      <!-- ⬆⬆⬆ 본인 프로젝트 설명 3줄로 교체 ⬆⬆⬆ -->
-    </section>
+  <main id="main-content">
 
-    <!-- ============ 활용 예시 ============ -->
-    <section class="panel use-cases">
-      <div class="section-head">
-        <h2><span class="section-icon" aria-hidden="true">UC</span> 활용 예시 <span class="use-cases-en">(Use Cases)</span></h2>
-        <p class="section-sub">이미지 업로드 + 프롬프트 한 줄로 Key-Value JSON을 즉시 추출하세요</p>
-      </div>
-      <div class="use-cases-grid">
-        <article class="use-case-card">
-          <span class="use-case-index" aria-hidden="true">01</span>
-          <h3>물류 입고 전표 스캔</h3>
-          <p class="use-case-desc">품목명, 수량, 입고처를 JSON으로 정밀 데이터 추출 자동화</p>
-          <span class="use-case-accent" aria-hidden="true"></span>
-        </article>
-        <article class="use-case-card">
-          <span class="use-case-index" aria-hidden="true">02</span>
-          <h3>회사 영수증 증빙 처리</h3>
-          <p class="use-case-desc">가맹점명, 일자, 금액을 분리하여 정산 시스템 실시간 연동</p>
-          <span class="use-case-accent" aria-hidden="true"></span>
-        </article>
-        <article class="use-case-card">
-          <span class="use-case-index" aria-hidden="true">03</span>
-          <h3>자산 관리 문서 분류</h3>
-          <p class="use-case-desc">체계적인 문서 인덱싱 및 카테고리 자동 분류 아카이빙</p>
-          <span class="use-case-accent" aria-hidden="true"></span>
-        </article>
+    <!-- ============ [2] MISSION ============ -->
+    <section class="section mission" id="mission">
+      <div class="container">
+        <div class="section-head animate-in">
+          <span class="section-id">§02 MISSION</span>
+          <h2>왜 STRUCT//SIM v5.0인가?</h2>
+          <p class="section-lead">Development Purpose &amp; Core Value</p>
+        </div>
+
+        <div class="mission-grid">
+          <article class="mission-card animate-in" style="--delay: 0.1s">
+            <span class="card-label">PARADIGM SHIFT</span>
+            <h3>건물이 아닌, <em>수직 도시</em>를 해석한다</h3>
+            <p>
+              초고층 빌딩은 단순히 물리적인 구조체(Slab, Core)가 아니라 수천 명의 인간이 호흡하는 수직 도시입니다.
+              기존의 구조 해석이 <strong>'건물이 무너지지 않는가'</strong>에만 집중했다면,
+              v5.0은 <strong>'그 안에 있는 인간이 안전하게 대피할 수 있는가'</strong>라는 궁극적인 질문에 답합니다.
+            </p>
+          </article>
+
+          <article class="mission-card mission-card--accent animate-in" style="--delay: 0.2s">
+            <span class="card-label">INTEGRATION</span>
+            <h3>물리 × 인간 행동의 실시간 결합</h3>
+            <p>
+              물리적 하중(Wind / Dead Load)과 인간 행동 패턴(Evacuation Golden Time)을
+              실시간 유기적으로 결합하여, 보이지 않는 연쇄 사고 위험을 사전에 완벽히 통제합니다.
+            </p>
+            <div class="mission-chain">
+              <span>Wind Load</span>
+              <span class="chain-arrow">→</span>
+              <span>Vibration</span>
+              <span class="chain-arrow">→</span>
+              <span>Human Impact</span>
+              <span class="chain-arrow">→</span>
+              <span>Evacuation</span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ============ Giscus 댓글 (8장에서 추가) ============ -->
-    <section id="comments" class="panel comments">
-      <div class="section-head">
-        <h2><span class="section-icon" aria-hidden="true">FB</span> 이 프로젝트 어떠세요?</h2>
-        <p class="section-sub comments-note">GitHub 계정으로 로그인하면 댓글이 본인 리포의 GitHub Discussions에 자동 저장됩니다.</p>
-      </div>
+    <!-- ============ [3] FEATURES ============ -->
+    <section class="section features" id="features">
+      <div class="container">
+        <div class="section-head animate-in">
+          <span class="section-id">§03 SPECIFICATION</span>
+          <h2>핵심 기능 및 작동 매커니즘</h2>
+          <p class="section-lead">What We Simulate</p>
+        </div>
 
-      <!--
-        ⬇⬇⬇ 9주차 SECTION 8 에서 giscus.app 가 자동 생성한 script 코드를 여기에 붙여넣기 ⬇⬇⬇
-        교체할 속성:
-          - data-repo
-          - data-repo-id
-          - data-category-id
-        나머지 속성은 그대로 두세요.
-      -->
-      <div class="giscus"></div>
-      <script src="https://giscus.app/client.js"
-        data-repo="youngwoo28/aiweb2026"
-        data-repo-id="<TODO: giscus.app에서 발급받은 repo-id 붙여넣기>"
-        data-category="Announcements"
-        data-category-id="<TODO: giscus.app에서 발급받은 category-id 붙여넣기>"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="ko"
-        crossorigin="anonymous"
-        async>
-      </script>
-      <!-- ⬆⬆⬆ giscus 설정값 교체 ⬆⬆⬆ -->
+        <div class="spec-grid">
+          <article class="spec-card animate-in" style="--delay: 0.05s">
+            <header class="spec-head">
+              <span class="spec-index">01</span>
+              <span class="spec-tag spec-tag-cyan">PHYSICS</span>
+            </header>
+            <h3>Dynamic Wind &amp; Dead Load Simulation</h3>
+            <p>
+              50층 코어 및 아웃리거 보강 구조물에 가해지는 풍하중(kN)과 고정하중(ton)에 따른
+              미세 진동 및 부재 두께(MEMBER THK) 유틸리티 실시간 연산.
+            </p>
+            <dl class="spec-params">
+              <div><dt>WIND LOAD</dt><dd>0 – 150 kN</dd></div>
+              <div><dt>DEAD LOAD</dt><dd>100 – 500 ton</dd></div>
+              <div><dt>MEMBER THK</dt><dd>10 – 50 mm</dd></div>
+            </dl>
+          </article>
+
+          <article class="spec-card spec-card--warn animate-in" style="--delay: 0.1s">
+            <header class="spec-head">
+              <span class="spec-index">02</span>
+              <span class="spec-tag spec-tag-orange">ACCIDENT CHAIN</span>
+            </header>
+            <h3>Cascading Accident Chain</h3>
+            <p>
+              임계 진동 도달 시 발생하는 실내 변형 단계를 추적합니다.
+            </p>
+            <ol class="chain-steps">
+              <li><span class="step-num">01</span>층 진동 감지</li>
+              <li><span class="step-num">02</span>가구 전도 및 충돌</li>
+              <li><span class="step-num">03</span>외벽 유리 파손 / 파편 버스트</li>
+              <li><span class="step-num">04</span>창외 추락(탄도 낙하) 위험군 판단</li>
+            </ol>
+          </article>
+
+          <article class="spec-card animate-in" style="--delay: 0.15s">
+            <header class="spec-head">
+              <span class="spec-index">03</span>
+              <span class="spec-tag spec-tag-amber">HUMAN</span>
+            </header>
+            <h3>Human Impact Level</h3>
+            <p>
+              층별 순간/피크 가속도(milli-g) 기반 인체 영향 등급을 실시간 분류 및 시각화합니다.
+              ISO 10137형 단순화 기준 적용.
+            </p>
+            <ul class="grade-list">
+              <li><span class="grade-dot grade-none"></span>NONE — 체감 없음</li>
+              <li><span class="grade-dot grade-percept"></span>PERCEPTIBLE — 진동 감지</li>
+              <li><span class="grade-dot grade-discomfort"></span>DISCOMFORT — 보행 곤란</li>
+              <li><span class="grade-dot grade-hazard"></span>HAZARD — 전도 위험</li>
+              <li><span class="grade-dot grade-severe"></span>SEVERE — 부상 위험</li>
+            </ul>
+          </article>
+
+          <article class="spec-card animate-in" style="--delay: 0.2s">
+            <header class="spec-head">
+              <span class="spec-index">04</span>
+              <span class="spec-tag spec-tag-cyan">EVACUATION</span>
+            </header>
+            <h3>Evacuation Golden Time Optimizer</h3>
+            <p>
+              진동으로 인한 보행 저하 속도 및 엘리베이터 안전 정지(EV Lock) 상황을 가중치로 반영하여,
+              피난 허용 시간(ASET) 내에 안전하게 대피 가능한지 <strong>골든타임 여유 초(s)</strong> 분석 및 판정.
+            </p>
+            <div class="rset-bar" aria-hidden="true">
+              <div class="rset-segment rset-pre">PRE 60s</div>
+              <div class="rset-segment rset-walk">WALK</div>
+              <div class="rset-segment rset-queue">QUEUE</div>
+              <div class="rset-segment rset-descent">DESCENT</div>
+              <div class="rset-margin">MARGIN</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ [4] USE CASES ============ -->
+    <section class="section use-cases" id="use-cases">
+      <div class="container">
+        <div class="section-head animate-in">
+          <span class="section-id">§04 APPLICATIONS</span>
+          <h2>활용 및 적용 예시</h2>
+          <p class="section-lead">Use Cases</p>
+        </div>
+
+        <div class="cases-grid">
+          <article class="case-card animate-in" style="--delay: 0.05s">
+            <span class="case-num">UC-01</span>
+            <h3>AI 기반 스마트 빌딩 설계 가이드</h3>
+            <p>
+              구조 설계 단계에서 하중 변화에 따른 재실자의 심리적 불쾌감 및 전도 위험을 미리 예측하여
+              최적의 부재 두께를 역산합니다.
+            </p>
+          </article>
+
+          <article class="case-card animate-in" style="--delay: 0.1s">
+            <span class="case-num">UC-02</span>
+            <h3>초고층 재난 대피 훈련 가상 가이드</h3>
+            <p>
+              특정 태풍/지진 시나리오에서 엘리베이터 정지 시 계단 대기열 병목 현상을 예측하고
+              최적의 피난 동선을 시뮬레이션합니다.
+            </p>
+          </article>
+
+          <article class="case-card animate-in" style="--delay: 0.15s">
+            <span class="case-num">UC-03</span>
+            <h3>디지털 트윈(Digital Twin) 재난 관제</h3>
+            <p>
+              실제 빌딩 센서 데이터와 연동하여 실시간 사고 발생 카운트를 예보하고
+              골든타임 크리티컬 구간을 실시간 추적 및 경보합니다.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TECH STACK ============ -->
+    <section class="section stack" id="stack">
+      <div class="container">
+        <div class="section-head animate-in">
+          <span class="section-id">§05 STACK</span>
+          <h2>Tech Stack</h2>
+        </div>
+        <ul class="stack-list animate-in" style="--delay: 0.1s">
+          <li>React 19 (UI Framework)</li>
+          <li>Three.js WebGL (TRUE-3D Engine)</li>
+          <li>Real-time Structural Solver (δ, σ, P/Pcr)</li>
+          <li>ISO 10137 / SFPE형 Human Impact Model</li>
+          <li>Cloudflare Pages (Static Deployment)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="section final-cta">
+      <div class="container animate-in">
+        <p class="final-eyebrow">READY FOR FLOOR DIVE?</p>
+        <h2>50층 타워 내부로 직접 진입하세요</h2>
+        <p class="final-desc">DRAG 회전 · PINCH 줌 · 층 탭 = FLOOR DIVE · EXAG ×40</p>
+        <a class="btn-primary btn-primary--lg" href="demo.html" data-demo-link>
+          <span class="btn-icon" aria-hidden="true">▶</span>
+          라이브 데모 실행하기 (Floor Dive)
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ Giscus ============ -->
+    <section id="comments" class="section comments">
+      <div class="container">
+        <div class="section-head animate-in">
+          <span class="section-id">§FB FEEDBACK</span>
+          <h2>이 프로젝트 어떠세요?</h2>
+          <p class="section-lead">GitHub 계정으로 로그인하면 댓글이 Discussions에 저장됩니다.</p>
+        </div>
+        <div class="giscus-wrap animate-in" style="--delay: 0.1s">
+          <div class="giscus"></div>
+          <script src="https://giscus.app/client.js"
+            data-repo="youngwoo28/aiweb2026"
+            data-repo-id="<TODO: giscus.app에서 발급받은 repo-id 붙여넣기>"
+            data-category="Announcements"
+            data-category-id="<TODO: giscus.app에서 발급받은 category-id 붙여넣기>"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="preferred_color_scheme"
+            data-lang="ko"
+            crossorigin="anonymous"
+            async>
+          </script>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
       <p>
-        2026 AI 웹 융합 · 9주차 데모 소개 페이지 ·
+        2026 AI 웹 융합 · STRUCT//SIM v5.0 ·
         <a href="https://aiweb2026.site">aiweb2026.site</a>
       </p>
     </div>
@@ -256,261 +328,30 @@
 
   <script>
   (function () {
-    var runBtn = document.getElementById('runScanBtn');
-    var jsonCode = document.getElementById('jsonCode');
-    var jsonOutput = document.getElementById('jsonOutput');
-    var jsonStatus = document.getElementById('jsonStatus');
-    var uploadWidget = document.getElementById('uploadWidget');
-    var uploadStatus = document.getElementById('uploadStatus');
-    var receiptPreview = document.getElementById('receiptPreview');
-    var receiptPaper = document.getElementById('receiptPaper');
-    var uploadFilename = document.getElementById('uploadFilename');
-    var promptInput = document.getElementById('promptInput');
-    var pythonCode = document.getElementById('pythonCode');
-    var perfLatency = document.getElementById('perfLatency');
-    var perfInputTokens = document.getElementById('perfInputTokens');
-    var perfOutputTokens = document.getElementById('perfOutputTokens');
-    var exampleTabs = document.querySelectorAll('.example-tab');
-
-    if (!runBtn || !jsonCode) return;
-
-    var EXAMPLES = {
-      logistics: {
-        previewAria: 'SK물류 센터 입고 전표 미리보기',
-        receiptHtml:
-          '<div class="receipt-logo">SK물류</div>' +
-          '<div class="receipt-title">센터 입고 전표</div>' +
-          '<div class="receipt-meta"><span>전표 No. WH-2026-0847</span><span>2026.05.27</span></div>' +
-          '<table class="receipt-table"><thead><tr><th>품목</th><th>수량</th><th>단위</th></tr></thead>' +
-          '<tbody><tr><td>A박스</td><td>10</td><td>EA</td></tr>' +
-          '<tr><td>B박스</td><td>20</td><td>EA</td></tr>' +
-          '<tr><td>C파레트</td><td>5</td><td>PLT</td></tr></tbody></table>' +
-          '<div class="receipt-footer">입고처: 인천Hub · 담당: 김물류</div>',
-        filename: '전표1.png',
-        prompt: '품목명, 수량, 입고처를 JSON 데이터로 추출해줘',
-        jsonPlain: [
-          '{',
-          '  "items": [',
-          '    { "name": "A박스", "qty": 10 },',
-          '    { "name": "B박스", "qty": 20 },',
-          '    { "name": "C파레트", "qty": 5 }',
-          '  ],',
-          '  "location": "인천Hub"',
-          '}'
-        ].join('\n'),
-        jsonHtml:
-          '<span class="json-punct">{</span>\n' +
-          '  <span class="json-key">"items"</span><span class="json-punct">: [</span>\n' +
-          '    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"A박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">10</span> <span class="json-punct">},</span>\n' +
-          '    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"B박스"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">20</span> <span class="json-punct">},</span>\n' +
-          '    <span class="json-punct">{</span> <span class="json-key">"name"</span><span class="json-punct">:</span> <span class="json-str">"C파레트"</span><span class="json-punct">,</span> <span class="json-key">"qty"</span><span class="json-punct">:</span> <span class="json-num">5</span> <span class="json-punct">}</span>\n' +
-          '  <span class="json-punct">],</span>\n' +
-          '  <span class="json-key">"location"</span><span class="json-punct">:</span> <span class="json-str">"인천Hub"</span>\n' +
-          '<span class="json-punct">}</span>',
-        perf: { latency: 0.5, input: 250, output: 120 }
-      },
-      receipt: {
-        previewAria: 'SK식품 식대 영수증 미리보기',
-        receiptHtml:
-          '<div class="receipt-logo receipt-logo--food">SK식품</div>' +
-          '<div class="receipt-title">식대 영수증</div>' +
-          '<div class="receipt-meta"><span>가맹점: 강남역 분식집</span><span>2026.05.26</span></div>' +
-          '<table class="receipt-table receipt-table--summary">' +
-          '<tbody><tr><th>공급가액</th><td>45,455원</td></tr>' +
-          '<tr><th>부가세</th><td>4,545원</td></tr>' +
-          '<tr class="receipt-total"><th>합계</th><td>50,000원</td></tr></tbody></table>' +
-          '<div class="receipt-footer">결제: 법인카드 · 승인번호 882910</div>',
-        filename: 'receipt_01.png',
-        prompt: '영수증에서 가맹점명, 일자, 공급가액, 부가세를 추출해줘',
-        jsonPlain: [
-          '{',
-          '  "merchant": "강남역 분식집",',
-          '  "date": "2026-05-26",',
-          '  "supply_amount": 45455,',
-          '  "vat": 4545,',
-          '  "total": 50000',
-          '}'
-        ].join('\n'),
-        jsonHtml:
-          '<span class="json-punct">{</span>\n' +
-          '  <span class="json-key">"merchant"</span><span class="json-punct">:</span> <span class="json-str">"강남역 분식집"</span><span class="json-punct">,</span>\n' +
-          '  <span class="json-key">"date"</span><span class="json-punct">:</span> <span class="json-str">"2026-05-26"</span><span class="json-punct">,</span>\n' +
-          '  <span class="json-key">"supply_amount"</span><span class="json-punct">:</span> <span class="json-num">45455</span><span class="json-punct">,</span>\n' +
-          '  <span class="json-key">"vat"</span><span class="json-punct">:</span> <span class="json-num">4545</span><span class="json-punct">,</span>\n' +
-          '  <span class="json-key">"total"</span><span class="json-punct">:</span> <span class="json-num">50000</span>\n' +
-          '<span class="json-punct">}</span>',
-        perf: { latency: 0.4, input: 180, output: 90 }
-      }
-    };
-
-    var LOADING_MSG = '⏳ Scanning document and executing VLM Pipeline...';
-    var currentExample = 'logistics';
-    var scanning = false;
-
-    function getExample() {
-      return EXAMPLES[currentExample];
-    }
-
-    function buildPythonSnippet(filename) {
-      return (
-        '<span class="py-kw">from</span> huggingface_hub <span class="py-kw">import</span> InferenceClient\n\n' +
-        'client = InferenceClient()\n' +
-        'result = client.chat.completions.create(\n' +
-        '    model=<span class="py-str">"Qwen/Qwen3-VL-30B"</span>,\n' +
-        '    messages=[{\n' +
-        '        <span class="py-str">"role"</span>: <span class="py-str">"user"</span>,\n' +
-        '        <span class="py-str">"content"</span>: [\n' +
-        '            {<span class="py-str">"type"</span>: <span class="py-str">"image"</span>, <span class="py-str">"url"</span>: <span class="py-str">"' + filename + '"</span>},\n' +
-        '            {<span class="py-str">"type"</span>: <span class="py-str">"text"</span>, <span class="py-str">"text"</span>: prompt}\n' +
-        '        ]\n' +
-        '    }]\n' +
-        ')\n' +
-        '<span class="py-fn">print</span>(result.choices[<span class="py-num">0</span>].message.content)'
-      );
-    }
-
-    function setPerfDisplay(perf) {
-      perfLatency.textContent = perf.latency.toFixed(1) + 's';
-      perfInputTokens.textContent = String(perf.input);
-      perfOutputTokens.textContent = String(perf.output);
-    }
-
-    function updateTabs(id) {
-      exampleTabs.forEach(function (tab) {
-        var active = tab.dataset.example === id;
-        tab.classList.toggle('is-active', active);
-        tab.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-    }
-
-    function applyExample(id, options) {
-      options = options || {};
-      var ex = EXAMPLES[id];
-      if (!ex) return;
-
-      currentExample = id;
-      updateTabs(id);
-
-      receiptPreview.setAttribute('aria-label', ex.previewAria);
-      receiptPaper.classList.add('is-swapping');
-      window.setTimeout(function () {
-        receiptPaper.innerHTML = ex.receiptHtml;
-        receiptPaper.classList.remove('is-swapping');
-      }, 180);
-
-      uploadFilename.textContent = ex.filename;
-      if (!options.keepPrompt) {
-        promptInput.value = ex.prompt;
-      }
-      pythonCode.innerHTML = buildPythonSnippet(ex.filename);
-
-      if (!scanning) {
-        jsonCode.innerHTML = ex.jsonHtml;
-        setPerfDisplay(ex.perf);
-        jsonStatus.textContent = 'Extracted';
-        jsonStatus.classList.add('success');
-        jsonOutput.classList.remove('is-loading');
-      }
-    }
-
-    function switchExample(id) {
-      if (scanning || id === currentExample) return;
-      applyExample(id);
-    }
-
-    exampleTabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        switchExample(tab.dataset.example);
+    var demoLinks = document.querySelectorAll('[data-demo-link]');
+    demoLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        window.setTimeout(function () {
+          window.location.href = link.getAttribute('href');
+        }, 380);
       });
     });
 
-    runBtn.addEventListener('click', startScan);
-
-    function startScan() {
-      if (scanning) return;
-      var ex = getExample();
-      scanning = true;
-      runBtn.disabled = true;
-      runBtn.classList.add('is-running');
-      exampleTabs.forEach(function (t) { t.disabled = true; });
-
-      uploadWidget.classList.add('is-scanning');
-      uploadStatus.textContent = 'Processing';
-      uploadStatus.classList.remove('success');
-
-      jsonStatus.textContent = 'Scanning';
-      jsonStatus.classList.remove('success');
-
-      jsonOutput.classList.add('is-loading');
-      jsonCode.textContent = LOADING_MSG;
-
-      resetCounters();
-      animateCounters(ex.perf);
-
-      window.setTimeout(function () {
-        typeJson(0, ex);
-      }, 1000);
-    }
-
-    function resetCounters() {
-      perfLatency.textContent = '0.0s';
-      perfInputTokens.textContent = '0';
-      perfOutputTokens.textContent = '0';
-    }
-
-    function animateCounters(targets) {
-      var duration = 900;
-      var start = performance.now();
-
-      function tick(now) {
-        var t = Math.min((now - start) / duration, 1);
-        var ease = 1 - Math.pow(1 - t, 3);
-
-        perfLatency.textContent = (targets.latency * ease).toFixed(1) + 's';
-        perfInputTokens.textContent = String(Math.round(targets.input * ease));
-        perfOutputTokens.textContent = String(Math.round(targets.output * ease));
-
-        if (t < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          setPerfDisplay(targets);
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
-      }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-      requestAnimationFrame(tick);
-    }
-
-    function finishScan(ex) {
-      jsonOutput.classList.remove('is-loading');
-      jsonCode.innerHTML = ex.jsonHtml;
-      setPerfDisplay(ex.perf);
-
-      jsonStatus.textContent = 'Extracted';
-      jsonStatus.classList.add('success');
-
-      uploadWidget.classList.remove('is-scanning');
-      uploadStatus.textContent = 'Ready';
-      uploadStatus.classList.add('success');
-
-      scanning = false;
-      runBtn.disabled = false;
-      runBtn.classList.remove('is-running');
-      exampleTabs.forEach(function (t) { t.disabled = false; });
-    }
-
-    function typeJson(index, ex) {
-      var plain = ex.jsonPlain;
-      if (index < plain.length) {
-        jsonCode.textContent = plain.slice(0, index + 1);
-        window.setTimeout(function () {
-          typeJson(index + 1, ex);
-        }, 12);
-        return;
-      }
-      finishScan(ex);
-    }
-
-    applyExample('logistics');
+    document.querySelectorAll('.animate-in').forEach(function (el) {
+      if (!el.closest('.hero')) observer.observe(el);
+    });
   })();
   </script>
 </body>
